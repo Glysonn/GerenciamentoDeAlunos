@@ -4,14 +4,12 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
-
-var app = builder.Build();
 
 
 // armazenando a connection string (configurada no app settings) nessa variável
 var connectionStringMysql = builder.Configuration.GetConnectionString("BancoMysql");
 // configurando o banco MYSQL
+
 builder.Services.AddDbContext<EscolaContext>(
     options => options.UseMySql(
         connectionStringMysql,
@@ -19,6 +17,10 @@ builder.Services.AddDbContext<EscolaContext>(
     )
 );
 
+
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.

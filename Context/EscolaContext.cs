@@ -13,6 +13,7 @@ namespace dotnetmvc.Context
         {
 
         }
+
         public DbSet<Aluno> Alunos { get; set; }
     }
 }
