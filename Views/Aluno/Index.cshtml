@@ -25,14 +25,18 @@
     </thead>
     <tbody>
         @* Listando todos os alunos *@
+
         @foreach (var aluno in Model)
         {
+            // recebendo a data de nascimento no formato DateTime no formato "00/00/00 00:00:00"
+            // e covertendo para o formato "00/00/00"
+            string DataNascimentoFormatada = aluno.DataNascimento.ToString("dd/MM/yyyy");
             <tr>
                 <td>@Html.DisplayFor(model => aluno.Matricula)</td>
                 <td>@Html.DisplayFor(model => aluno.Nome)</td>
                 <td>@Html.DisplayFor(model => aluno.Sobrenome)</td>
                 <td>@Html.DisplayFor(model => aluno.Email)</td>
-                <td>@Html.DisplayFor(model => aluno.DataNascimento)</td>
+                <td>@Html.DisplayFor(model => DataNascimentoFormatada)</td>
                 <td>@Html.DisplayFor(model => aluno.Ativo)</td>
                 <td>
                     <a asp-action="Editar" asp-route-id="aluno.Matricula">Editar</a>
