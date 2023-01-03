@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using dotnetmvc.Context;
+using dotnetmvc.Models;
+
 namespace dotnetmvc.Controllers
 {
     public class AlunoController : Controller
@@ -22,6 +24,23 @@ namespace dotnetmvc.Controllers
         {
             var alunos = _context.Alunos.ToList();
             return View(alunos);
+        }
+
+        public IActionResult Adicionar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Adicionar(Aluno aluno)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Alunos.Add(aluno);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(aluno);
         }
     }
 }
