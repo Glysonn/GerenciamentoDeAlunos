@@ -1,8 +1,26 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Bem-Vindo";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-5">Bem-Vindo(a)</h1> <br>
+    <p class="lead">Este é um simples sistema de gerenciamento de alunos que fiz com C# ASP.NET MVC com o propósito de aprender mais.</p>
+    <br>
+
+    <hr>
+
+    <h2 class="h2">Possíveis ações</h2>
+    <div class="alert alert-light" role="alert">
+        As ações também podem ser encontradas no topo da página
+    </div>
+    <div class="btn-group-vertical btn-group-lg">
+            <a asp-controller="Aluno" asp-action="Index" class="btn btn-secondary">Listar Alunos</a>
+            <br>
+            <a asp-controller="Aluno" asp-action="Adicionar" class="btn btn-secondary btn-lg">Adicionar novo Aluno</a>
+            <br>
+            <a asp-controller="Aluno" asp-action="Index" class="btn btn-secondary btn-lg">Remover Aluno</a>
+            <br>
+            <button type="button" class="btn btn-secondary btn-lg">Large button</button>
+    </div>
+    
 </div>
