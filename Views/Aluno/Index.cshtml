@@ -39,7 +39,7 @@
                 <td>@Html.DisplayFor(model => DataNascimentoFormatada)</td>
                 <td>@Html.DisplayFor(model => aluno.Ativo)</td>
                 <td>
-                    <a asp-action="Editar" asp-route-id="@aluno.Matricula">Atualizar</a>
+                    <a asp-action="Atualizar" asp-route-id="@aluno.Matricula">Atualizar</a>
                     <a asp-action="Detalhes" asp-route-id="@aluno.Matricula">Detalhes</a>
                     <a asp-action="Deletar" asp-route-id="@aluno.Matricula">Deletar</a>
                 </td>
