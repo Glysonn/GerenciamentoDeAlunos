@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using dotnetmvc.Context;
 using dotnetmvc.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotnetmvc.Controllers
 {
@@ -41,6 +42,36 @@ namespace dotnetmvc.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(aluno);
+        }
+
+        public IActionResult Atualizar(int Matricula)
+        {
+            // matricula += 1;
+            var aluno = _context.Alunos.Find(Matricula);
+            if (aluno == null)
+            {
+                return NotFound($"teste matricula: {Matricula}");
+            }
+                
+            return View(aluno);
+        }
+        [HttpPost]
+        public IActionResult Atualizar(Aluno aluno, int Matricula)
+        {
+            var alunoBD = _context.Alunos.Find(Matricula);
+
+            /*
+                Removendo a entidade alunoBD do rastreamento do Entity Framework.
+                É necessário remover para copiar o objeto diretamente, assim como ocorre mais abaixo.
+                Sem limpar o rastreador, será disparada uma Exception pois haverá duas entidades com a mesma Primary Key.
+                Pode ser feito manualmente, atribuindo os novos valores para cada propriedade.
+            */
+            _context.Entry(alunoBD).State = EntityState.Detached;
+            alunoBD = aluno;
+
+            _context.Alunos.Update(alunoBD);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
