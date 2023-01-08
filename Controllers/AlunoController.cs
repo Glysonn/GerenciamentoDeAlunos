@@ -46,7 +46,6 @@ namespace dotnetmvc.Controllers
 
         public IActionResult Atualizar(int Matricula)
         {
-            // matricula += 1;
             var aluno = _context.Alunos.Find(Matricula);
             if (aluno == null)
             {
@@ -72,6 +71,19 @@ namespace dotnetmvc.Controllers
             _context.Alunos.Update(alunoBD);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
+        }
+
+        // essas actionresult são apenas um redirecionamento para a de cima, porém é ativada em outros botões.
+        // requer a matrícula de forma manual (através de um input)
+        public IActionResult AtualizarAluno()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AtualizarAluno(int Matricula)
+        {
+            var aluno = _context.Alunos.Find(Matricula);
+            return RedirectToAction(nameof(Atualizar), new {aluno = aluno, Matricula = Matricula});
         }
     }
 }

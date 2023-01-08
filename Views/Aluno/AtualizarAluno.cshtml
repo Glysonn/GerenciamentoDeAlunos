@@ -1,0 +1,25 @@
+@model dotnetmvc.Models.Aluno
+
+@{
+    ViewData["Title"] = "Atualizar";
+}
+
+<h1>Atualizar dados do aluno</h1>
+
+<hr/>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AtualizarAluno">
+            <div class="form-group">
+                <label asp-for="Matricula" class="control-label">Matrícula do aluno a ser atualizado</label>
+                <input asp-for="Matricula" min="1" class="form-control" />
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="submit" value="Enviar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
