@@ -24,6 +24,7 @@ namespace dotnetmvc.Controllers
         public IActionResult Index()
         {
             var alunos = _context.Alunos.ToList();
+            ViewBag.Mensagem = TempData["Mensagem"];
             return View(alunos);
         }
 
@@ -65,7 +66,7 @@ namespace dotnetmvc.Controllers
             var aluno = _context.Alunos.Find(Matricula);
             if (aluno == null)
             {
-                return NotFound($"teste matricula: {Matricula}");
+                return NotFound($"Aluno de matricula: {Matricula} não existe!");
             }
                 
             return View(aluno);
@@ -100,6 +101,24 @@ namespace dotnetmvc.Controllers
         {
             var aluno = _context.Alunos.Find(Matricula);
             return RedirectToAction(nameof(Atualizar), new {aluno = aluno, Matricula = Matricula});
+        }
+
+        public IActionResult Deletar(int Matricula)
+        {
+            var aluno = _context.Alunos.Find(Matricula);
+            return View(aluno);
+        }
+
+        [HttpPost]
+        public IActionResult Deletar (Aluno aluno, int Matricula)
+        {
+            var alunoBD = _context.Alunos.Find(Matricula);
+            _context.Remove(alunoBD);
+            _context.SaveChanges();
+
+            TempData["Mensagem"] = $"O aluno {alunoBD.Nome} de matrícula {alunoBD.Matricula} foi deletado!";
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

@@ -1,0 +1,38 @@
+@model dotnetmvc.Models.Aluno
+
+@{
+    ViewData["Title"] = "Deletar";
+}
+
+<h1>Deletar Aluno</h1>
+<hr>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(model => model.Matricula)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Nome) </th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Sobrenome)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Email)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.DataNascimento)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Ativo)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Html.DisplayFor(model=> model.Matricula)</th>
+            <td>@Html.DisplayFor(model=> model.Nome)</th>
+            <td>@Html.DisplayFor(model=> model.Sobrenome)</th>
+            <td>@Html.DisplayFor(model=> model.Email)</th>
+            <td>@Html.DisplayFor(model=> model.DataNascimento)</th>
+            <td>@Html.DisplayFor(model=> model.Ativo)</th>
+        </tr>
+    </tbody>
+</table>
+
+<div class="form-group">
+    <p>Você tem certeza que quer deletar o aluno @Model.Nome.ToUpper() ?</p>
+    <form asp-action="Deletar" asp-route-Matricula="@Model.Matricula">
+        <input type="submit" value="Deletar" class="btn btn-primary">
+    </form>
+</div>
