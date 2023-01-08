@@ -9,6 +9,12 @@
 <p>
     <a asp-action="Adicionar">Adicionar Aluno</a>
 </p>
+<div class="form-group">
+    <form asp-action="Index">
+        <input name="Texto" placeholder="Nome do aluno"/>
+        <input type="submit" value="Pesquisar" />
+    </form>
+</div>
 
 <table class="table">
     <thead>

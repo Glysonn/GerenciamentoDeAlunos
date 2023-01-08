@@ -27,6 +27,22 @@ namespace dotnetmvc.Controllers
             return View(alunos);
         }
 
+        [HttpPost]
+        public IActionResult Index(string Texto)
+        {
+            // var aluno = _context.Alunos.Find(Convert.ToInt32(Texto));
+            if (!string.IsNullOrEmpty(Texto))
+            {
+                var alunos = _context.Alunos.Where(a => a.Nome.Contains(Texto)).ToList();
+                return View(alunos); 
+            }
+            else
+            {
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+
         public IActionResult Adicionar()
         {
             return View();
